@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<style>
+    body{
+        background-color: rgb(238, 237, 237);
+    }
+.container{
+    background-color: white;
+    min-width: 50%;
+    min-height: 50%;
+    display: grid;
+}
+
+.co{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nam, .age, .qualification, .exp, .skills, .phone{
+     border: 0.04px solid black;
+    margin: 50px;
+    padding-inline: 50px;
+    font-size: 20px;
+} 
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.2px solid white;
+    background-color: rgb(72, 110, 168);
+    
+}
+h1{
+    color: white;
+}
+
+.bt{
+    
+    display: grid;
+    justify-content: space-between;
+  
+    grid-template-columns: auto auto;
+
+}
+button{
+background-color:rgb(72, 110, 168) ;
+color: white;
+padding: 7px;
+border: none;
+border-radius: 3px;
+}
+
+button:hover{
+    background-color:rgb(45, 92, 164) ;
+
+}
+
+</style>
+<body>
+    <div class="bt">
+    <a href="{% url 'home1' %}" class="btn btn-primary"><button>Home</button></a>
+
+    <a href="{% url 'logout' %}" class="btn btn-primary"><button>Logout</button></a>
+    <a href="{% url 'pedit' %}"><button>Edit Profile</button></a>
+</div>
+    <div class="co">
+    <div class="container">
+       
+       
+        <div class="title">
+        <h1 >User Profile</h1>
+        </div>
+
+        <div class="nam">
+            <p><b>Username :</b>{{user.username}}</p>
+        </div>
+
+        <div class="age">
+            <p><b>Age :  </b> {{data.age}}</p>
+        </div>
+
+        <div class="qualification">
+            <p ><b>Qualification :  </b> {{data.qualification}}</p>
+        </div>
+
+        <div class="exp">
+            <p><b>Previous Experience : </b> {{data.exp}}</p>
+        </div>
+
+        <div class="skills">
+            <p><b>Skills : </b>  {{data.skills}}</p>
+        </div>
+
+        <div class="phone">
+            <p> <b>Contact Number</b> :  {{data.phone}}</p>
+        </div>
+    </div>
+    </div>
+    
+</body>
+</html>

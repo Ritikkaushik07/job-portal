@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job</title>
+
+    <!-- boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* Global styles */
+* {
+    font-family: "Outfit", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(https://boco.solutions/EmployeeAccessPortal/img/prop2.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Container styles */
+.login-container {
+    width: 380px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(9px);
+    color: white;
+    border-radius: 14px;
+    padding: 30px 40px;
+}
+
+/* Heading styles */
+.login-container h1 {
+    font-size: 39px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Social icons styles */
+.social-icons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.social-icons .icon {
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    margin: 0 10px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 16px;
+    padding: 7px 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons .icon:hover {
+    color: #c2c2c2;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form container styles */
+.form-container {
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+/* Form message container styles */
+.form-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Form input and button styles */
+input,
+button {
+    width: 100%;
+    height: 100%;
+    height: 50px;
+    margin: 10px 0;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 60px;
+    font-size: 15px;
+    color: white;
+    text-indent: 15px;
+}
+
+input::placeholder {
+    color: white;
+    text-indent: 15px;
+}
+
+input:focus,
+button:focus {
+    border-color: transparent;
+}
+
+button {
+    background-color: #02a152;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s ease ease-in-out;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Anchor tag styles */
+a {
+    text-align: center;
+    text-decoration: underline;
+    color: white;
+    transition: 0.4s ease-in-out;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+</style>
+<body>
+    <div class="login-container">
+        <div class="login-form" id="loginForm">
+            <h1>Employer Sign In</h1>
+            <a href="{% url 'login1' %}">Job Seeker login ?</a>
+
+           
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="username" placeholder="Username"  name="username">
+                <input type="password" placeholder="Password" name="pass">
+                {% for msg in messages %}
+                <div class="alert alert-warning alert-dismissable fade show" role="alert">
+                    <strong>{{msg}}</strong>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                </div>
+                {% endfor %}
+                <button type="submit">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="{% url 'signup' %}" id="showSignup">Sign Up</a></p>
+        </div>
+       
+    </div>
+    <script >
+        // Get references to login form, signup form, and buttons to switch between them
+const loginForm = document.getElementById('loginForm'); // Reference to login form
+const signupForm = document.getElementById('signupForm'); // Reference to signup form
+const showSignupBtn = document.getElementById('showSignup'); // Button to show signup form
+const showLoginBtn = document.getElementById('showLogin'); // Button to show login form
+
+// Event listener to switch to signup form when the 'Sign Up' button is clicked
+showSignupBtn.addEventListener('click', () => {
+    loginForm.classList.add('hidden'); // Hide login form
+    signupForm.classList.remove('hidden'); // Show signup form
+});
+
+// Event listener to switch to login form when the 'Sign In' button is clicked
+showLoginBtn.addEventListener('click', () => {
+    loginForm.classList.remove('hidden'); // Show login form
+    signupForm.classList.add('hidden'); // Hide signup form
+});
+
+    </script>
+</body>
+
+</html>

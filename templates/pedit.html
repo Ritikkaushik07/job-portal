@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    body{
+        background-color: rgb(238, 237, 237);
+    }
+    .bo{
+    background-color: white;
+    min-width: 50%;
+    min-height: 50%;
+    display: grid;
+
+}
+
+.form-group{
+    border: 0.04px solid black;
+    margin: 50px;
+    padding-inline: 50px;
+    font-size: 20px;
+    padding: 10px;
+}
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.2px solid white;
+    background-color: rgb(72, 110, 168);
+    
+}
+.bt{
+    
+    display: grid;
+    justify-content: space-between;
+  
+    grid-template-columns: auto auto;
+    
+
+}
+button{
+background-color:rgb(72, 110, 168) ;
+color: white;
+padding: 7px;
+border: none;
+border-radius: 3px;
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+.act, .message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: white;
+}
+button:hover{
+    background-color:rgb(45, 92, 164) ;
+
+}
+</style>
+<body>
+    <div class="bt">
+    <a href="{% url 'home1' %}" class="btn btn-primary"><button>Home</button></a>
+    <a href="{% url 'logout' %}" class="btn btn-primary"><button>Logout</button></a>
+    <a href="{% url 'profile1' %}"><button> Profile</button></a>
+</div>
+
+    <div class="main">
+    <div class="bo">
+        <div class="title">
+            <h1>User profile</h1></div>
+        
+        <form action="" method="post" >
+            {% csrf_token %}
+        					
+        
+        <div class="form-group">
+            <label><b>Age :</b> </label>
+            <input name="age" type="text" value="{{data.age}}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label><b>Qualification :</b></label>
+            <input name="qualification" value="{{data.qualification}}" type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label><b>Previous Experience :</b></label>
+            <input name="exp" type="text" value="{{data.exp}}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label><b>Skills :</b></label>
+            <input name="skills" type="text" value="{{data.skills}}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label><b>Phone :</b></label>
+            <input name="phone" type="text" value="{{data.phone}}" class="form-control" required>
+        </div>
+        <div class="message">
+        {% for msg in messages %}
+                <div class="alert alert-warning alert-dismissable fade show" role="alert">
+                    <strong>{{msg}}</strong>
+                </div>
+                {% endfor %}
+            </div>
+                <div class="act">
+        <button type="submit" name="update" value="Save Changes" class="btn btn-primary" style="width:50%;border-radius:20px;">Save Changes</button>
+    </div>
+
+    </form>           
+    </div>
+</div>
+</body>
+</html>

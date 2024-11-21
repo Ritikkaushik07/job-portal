@@ -41,6 +41,20 @@ def Profile1(request):
 
     return render (request,'profile1.html', context1)
 
+@login_required(login_url='signup')
+def Profile(request):
+    try:
+        data=Datas.objects.get(user=request.user)
+    except Exception as e:
+        data=None
+        print('Exception:', e)
+
+    context1={
+        'data':data,
+    }
+
+    return render (request,'profile.html', context1)
+
 def Pedit(request):
     context = {}
     check = Datas.objects.filter(user__id=request.user.id)
@@ -53,9 +67,7 @@ def Pedit(request):
         qualification = request.POST.get("qualification")
         exp = request.POST.get("exp")
         skills = request.POST.get("skills")
-        phone=request.POST.get("phone")
-
-        
+        phone=request.POST.get("phone")       
        
         data.age = age
         data.qualification = qualification
@@ -68,6 +80,30 @@ def Pedit(request):
         messages.success(request, "Changes Saved Successfully ! ")
     return render(request,"pedit.html",context)
         
+def Pedit1(request):
+    context = {}
+    check = Datas.objects.filter(user__id=request.user.id)
+    if len(check)>0:
+        data = Datas.objects.get(user__id=request.user.id)
+        context["data"]=data    
+    if request.method=="POST":
+        
+        age = request.POST.get("age")
+        qualification = request.POST.get("qualification")
+        exp = request.POST.get("exp")
+        skills = request.POST.get("skills")
+        phone=request.POST.get("phone")       
+       
+        data.age = age
+        data.qualification = qualification
+        data.exp = exp
+        data.skills = skills
+        data.phone = phone
+        data.save()
+
+        context["status"] = "Changes Saved Successfully"
+        messages.success(request, "Changes Saved Successfully ! ")
+    return render(request,"pedit1.html",context)
 
 def SignupPage(request):
     if request.method=='POST':
